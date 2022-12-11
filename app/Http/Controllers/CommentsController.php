@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quacks;
 use App\Models\Comments;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class CommentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
     public function index()
     {
         $comments = Comments::all();
@@ -23,10 +25,13 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('comments.create');
-    }
+    // public function create()
+    // {
+    //     //return view('comments.create');
+    //     $quacks = Quacks::all();
+    //     return view('comments.create',compact('quacks'));
+    //     // return view('comments.create');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -34,18 +39,37 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function create()
+    {
+        $quacks = Quacks::all();
+        return view('comments.create',compact('quacks'));
+        // return view('comments.create');
+    }
+
+    public function createComment($id)
+    {
+        $quack = Quacks::findOrFail($id);
+        // dd($idquack);
+        return view('comments.createComment', compact('quack'));
+
+    }
+
+    
     public function store(Request $request)
     {
         $request->validate([
             'content' => 'required',
             'image' => 'required',
             'tags' => 'required',
+            'quack_id' => 'required',
         ]);
 
         Comments::create([
             'content' => $request->content,
             'image' => $request->image,
             'tags' => $request->tags,
+            'quack_id' => $request->quack_id,
         ]);
 
         return redirect()->route('comments.index')
@@ -88,6 +112,7 @@ class CommentsController extends Controller
             'content' => 'required',
             'image' => 'required',
             'tags' => 'required',
+            'quack_id' => 'required',
         ]);
 
         Comments::whereId($id)->update($updateComments);

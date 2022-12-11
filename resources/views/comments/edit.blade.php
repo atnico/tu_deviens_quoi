@@ -1,8 +1,8 @@
 @extends('layout')
 @section('content')
-<div class="container py-5">
+<div class="container py-5 col-md-12">
     <div class="row">
-        <div class="col-lg-7 mx-auto">
+        <div class="col-lg-12 mx-auto">
             <div class="bg-white rounded-lg shadow-sm p-5">
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
@@ -18,17 +18,17 @@
                         </div>
                         @endif
                         <!-- Formulaire -->
-                        <form method="post" action="{{ route('comments.update', $comment->id) }}">
+                        <form method="post" action="{{ route('comments.update', $comment->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="form-group">
                                 <label>Content</label>
-                                <input type="text" name="content" class="form-control" value="{{
-$comment->content}}">
+                                <textarea name="content"  cols="30" rows="10" class="form-control" value="{{
+$comment->content}}"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="string" name="image" class="form-control" value="{{ $comment->image }}">
+                                <input type="file" name="image" class="form-control" value="{{ $comment->image }}">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">

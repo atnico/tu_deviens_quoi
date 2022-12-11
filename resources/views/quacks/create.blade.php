@@ -18,7 +18,7 @@
                         </div>
                         @endif
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('quacks.store') }}">
+                        <form method="POST" action="{{ route('quacks.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Content</label>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="string" name="image" class="form-control">
+                                <input type="file" name="image" class="form-control">
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">

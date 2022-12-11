@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quacks;
+use App\Models\Comments;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class QuacksController extends Controller
 {
@@ -25,7 +27,8 @@ class QuacksController extends Controller
      */
     public function create()
     {
-        return view('quacks.create');
+        $comments = Comments::all();
+        return view('quacks.create',compact('comments'));
     }
 
     /**
@@ -42,11 +45,28 @@ class QuacksController extends Controller
             'tags' => 'required',
         ]);
 
+        $filename = "";
+        if ($request->hasFile('image')) {
+            // On récupère le nom du fichier avec son extension, résultat $filenameWithExt : "jeanmiche.jpg"
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // On récupère l'extension du fichier, résultat $extension : ".jpg"
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // On créer un nouveau fichier avec le nom + une date + l'extension, résultat $fileNameToStore :"jeanmiche_20220422.jpg"
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            // On enregistre le fichier à la racine /storage/app/public/uploads, ici la méthode storeAs défini déjà le chemin /storage/app
+            $path = $request->file('image')->storeAs('public/uploads', $filename);
+        } else {
+            $filename = Null;
+        }
+
         Quacks::create([
             'content' => $request->content,
-            'image' => $request->image,
+            'image' => $filename,
             'tags' => $request->tags,
         ]);
+
+        
 
         return redirect()->route('quacks.index')
             ->with('success', 'Quack ajouté avec succès !');
@@ -89,6 +109,8 @@ class QuacksController extends Controller
             'image' => 'required',
             'tags' => 'required',
         ]);
+
+        
 
         Quacks::whereId($id)->update($updateQuacks);
         return redirect()->route('quacks.index')

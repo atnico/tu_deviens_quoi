@@ -2,7 +2,7 @@
 @section('content')
 <div class="container py-5">
     <div class="row">
-        <div class="col-lg-10 mx-auto">
+        <div class="col-lg-6 mx-auto">
             <div class="bg-white rounded-lg shadow-sm p-5">
                 <div class="tab-content">
                     <div id="nav-tab-card" class="tab-pane fade show active">
@@ -17,9 +17,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Content</th>
+                                    <th scope="col">Contenu</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Tags</th>
+                                    <th scope="col">Quack</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,7 @@
                                     <td>{{$comment->content}}</td>
                                     <td>{{$comment->image}}</td>
                                     <td>{{$comment->tags}}</td>
+                                    <td>{{$comment->quack_id}}</td>
                                     <td>
                                         <a href="{{ route('comments.edit', $comment->id)}}" class="btn btn-primary btn-sm">Editer</a>
                                         <form action="{{ route('comments.destroy', $comment->id)}}" method="POST" style="display: inline-block">
