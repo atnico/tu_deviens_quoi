@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,8 +18,9 @@ class User extends Authenticatable
         'firstName',
         'lastName',
         'pseudo',
-        'email',
         'password',
+        'email',
+        'departement_id'
     ];
 
     /**
@@ -43,4 +41,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function quacks(){
+        return $this->hasMany(Quacks::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    // // je ccharge automatiquement l'utilisateur
+    // public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin(){
+        return $this->role == "admin";
+    }
+
 }

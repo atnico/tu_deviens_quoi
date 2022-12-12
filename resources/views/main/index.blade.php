@@ -74,6 +74,8 @@
                         <br>
                         <span>{{$quack->tags}}</span>
                         <br>
+                        <span>Le {{$quack->created_at->format('d/m/Y')}} à {{$quack->created_at->format('H:i:s')}}</span>
+                        <br>
 
                         @if (Auth::user())
                         <a href="{{ route('comments.createComment', $quack->id)}}" class="stretched-link">Ajouter un commentaire</a>
@@ -91,6 +93,8 @@
                     </div>
                     <div class="col-md-6 p-4 ps-md-0">
                         {{$comment->content}}
+                        <br>
+                        <span>Le {{$quack->created_at->format('d/m/Y')}} à {{$quack->created_at->format('H:i:s')}}</span>
                         <br>
                         <span>{{$comment->tags}}</span>
                         <br>
