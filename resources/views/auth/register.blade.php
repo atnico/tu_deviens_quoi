@@ -11,13 +11,13 @@
 
             <!-- Name -->
             <div>
-                <x-input-label for="firstName" :value="__('firstName')" />
+                <x-input-label for="firstName" :value="__('Prenom')" />
                 <x-text-input id="firstName" class="block mt-1 w-full" type="text" name="firstName" :value="old('firstName')" required autofocus />
                 <x-input-error :messages="$errors->get('firstName')" class="mt-2" />
             </div>
 
             <div>
-                <x-input-label for="lastName" :value="__('lastName')" />
+                <x-input-label for="lastName" :value="__('Nom')" />
                 <x-text-input id="lastName" class="block mt-1 w-full" type="text" name="lastName" :value="old('lastName')" required autofocus />
                 <x-input-error :messages="$errors->get('lastName')" class="mt-2" />
             </div>
@@ -37,7 +37,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Mot de passe')" />
 
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
@@ -49,7 +49,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-label for="password_confirmation" :value="__('Confirmez le mot de passe')" />
 
                 <x-text-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
@@ -60,11 +60,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Déjà inscrit ?') }}
                 </a>
 
                 <x-primary-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Inscription') }}
                 </x-primary-button>
             </div>
         </form>

@@ -29,11 +29,11 @@
                                 <tr>
                                     <td>{{$quack->id}}</td>
                                     <td>{{$quack->content}}</td>
-                                    <td>{{$quack->image}}</td>
+                                    <td>{{$quack->images}}</td>
                                     <td>{{$quack->tags}}</td>
                                     <td>
-                                        <a href="{{ route('quacks.edit', $quack->id)}}" class="btn btn-primary btn-sm">Editer</a>
-                                        <form action="{{ route('quacks.destroy', $quack->id)}}" method="POST" style="display: inline-block">
+                                        <a href="{{ route('quacks.edit', $quack->id)}}" class="btn btn-primary btn-sm">Editer</a><br>
+                                        <br><form action="{{ route('quacks.destroy', $quack->id)}}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm" type=" submit">Supprimer</button>

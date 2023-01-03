@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar{
+    display: flex;
+    justify-content: center;
+}
+
+.sidenav{
+    border-right: 1px solid white;
+}
+
+.sidenav a{
+    margin-bottom: 100px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+img{
+    width: 300px;
+}
+
+body{
+    background-color: rgb(1, 43, 58);
+}
+
+.quack-card{
+    border-radius: 10px;
+}
+
+.quack-content{
+    text-align: center;
+    margin-top: 50px;
+    flex-flow: row wrap;
+}
+
+.published{
+    border-radius: 10px 10px 0px 0px;
+}
+
+.comments{
+    border-radius: 0px 0px 10px 10px;
+}
+
+.published input{
+    margin-left: 20px;
+}
+
+.quacks-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+i{
+    color: white;
+}
+
+h2{
+    color: white;
+    text-align: center;
+}
+
+.message{
+    text-align: end;
+    font-size: 1.5rem;
+}
+
+h3{
+    color: white;
+}
+
+.quackers-connecte{
+    border-left: 1px solid white;
+}
+
+
+::after{
+    border-radius: 10px;
+    width: 300px;
+}
+
+.suppr{
+    margin-left: -100px;
+}

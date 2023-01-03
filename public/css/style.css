@@ -1,3 +1,10 @@
+.titre-bienvenue{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
 .navbar{
     display: flex;
     justify-content: center;
@@ -5,6 +12,18 @@
 
 .sidenav{
     border-right: 1px solid white;
+}
+
+
+.sidenav-style{
+    margin-left: 20px;
+    margin-top: 100px;
+}
+
+.your-turn{
+    display: flex;
+    justify-content: center;
+    margin-left: 400px;
 }
 
 .sidenav a{
@@ -79,10 +98,22 @@ h3{
     border-left: 1px solid white;
 }
 
-.carte{
-    
-}
 
 ::after{
     border-radius: 10px;
+    width: 300px;
+}
+
+.btn-edit{
+    display: flex;
+    justify-content: center;
+}
+
+.add-quack h2{
+    color: grey;
+}
+
+.auth-admin{
+    display: flex;
+    justify-content: center;
 }

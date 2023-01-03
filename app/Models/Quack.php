@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Comments;
-use Illuminate\Foundation\Auth\Users;
+use App\Models\Comment;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Quacks extends Model
+class Quack extends Model
 {
     use HasFactory;
     protected $fillable = ['content', 'image', 'tags', 'user_id'];

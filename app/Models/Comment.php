@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comments extends Model
+class Comment extends Model
 {
     use HasFactory;
     protected $fillable = ['content', 'image', 'tags', 'quack_id', 'user_id'];

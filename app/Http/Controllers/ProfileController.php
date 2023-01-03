@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Quack;
 
 class ProfileController extends Controller
 {
@@ -63,5 +66,19 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function profil(User $user)
+    {
+        $quacks = Quack::where('user_id', '=', $user->id)->get();
+
+        return view('user/profil', 
+        [
+            'quacks' => $quacks,
+            'user' => $user,
+        ]);
+    
+
+
     }
 }

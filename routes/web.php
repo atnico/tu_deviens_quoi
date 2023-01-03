@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuacksController;
-use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\QuackController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MainController;
 
 /*
@@ -17,9 +17,7 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [App\Http\Controllers\MainController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,12 +29,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::resource('quacks', QuacksController::class);
+Route::resource('quacks', QuackController::class);
 
-Route::resource('comments', CommentsController::class);
+Route::resource('comments', CommentController::class);
 
-Route::resource('/', MainController::class);
+Route::get('/comment/{quacks}/create', [CommentController::class, 'createComment'])->name('comments.createComment');
 
-Route::get('/comment/{quacks}/create', [CommentsController::class, 'createComment'])->name('comments.createComment');
+Route::get('/profil/{user}', [ProfileController::class, 'profil'])->name('profil');
+
+Route::get('/comments/{comment}', [CommentController::class, 'comment'])->name('comment');
+
